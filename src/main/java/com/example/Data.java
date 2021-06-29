@@ -2,17 +2,20 @@ package com.example;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.File;
 
-import java.util.Iterator;
+import java.util.*;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet; 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Data {
     private Student[] list;
     private int studentNum = 0;
+    private Scanner sc = new Scanner(System.in);
 
     FileInputStream file;
 	XSSFWorkbook workbook;
@@ -41,8 +44,8 @@ public class Data {
     
     
     private void importFile(String filePath) throws IOException {
-    //	file = new FileInputStream("data.xlsx");
-        workbook = new XSSFWorkbook(filePath);
+        System.out.print("password: ");
+        workbook = (XSSFWorkbook) WorkbookFactory.create(new File(filePath), sc.next(), true);
         sheet = workbook.getSheetAt(0);
     }
     
@@ -127,7 +130,6 @@ public class Data {
                 room2[i][j]=list[room[i][j]];
             }
         }
-        //
         ///*
         for (int i = 0; i < room.length; i++) {
             for (int j = 0; j < room[i].length; j++) {
