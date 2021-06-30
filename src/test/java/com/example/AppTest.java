@@ -44,4 +44,33 @@ public class AppTest
         }
         System.out.println(stNum);
     }
+
+    @Test
+    public void test2() {
+        int x = 1;
+        System.out.println(x/2.0);
+    }
+
+    private static Assigned maybe_swap(Assigned assigned, int x, int y, double T){
+        double score_now = assigned.getError();
+        int a, b, c, d;
+        a=x/(assigned.getAssignedList().length);
+        b=x%3;
+        c=y/(assigned.getAssignedList().length);
+        d=y%3;
+        Assigned swapped = new Assigned(assigned);
+        swap(swapped, a, b, c, d);
+        double score_swapped=swapped.getError();
+        if (Math.random() < Math.exp( (score_swapped - score_now) / T ))
+            return swapped;
+        else
+            return assigned;
+    }
+
+    private static void swap(Assigned assigned, int a, int b, int c, int d) {
+        Student[][] students = assigned.getAssignedList();
+        Student temp = students[a][b];
+        students[a][b]=students[c][d];
+        students[c][d]=temp;
+    }
 }

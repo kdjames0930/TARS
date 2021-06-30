@@ -13,7 +13,7 @@ public class Error {
         }
         for(int i=0;i<2;i++) {
             for (int j=0;j<5;j++) {
-                error[i]+=sigmoid(a[j]*s[i].getRoomie()[j]);
+                error[i]+=a[j]*s[i].getRoomie()[j]/*10*(sigmoid(a[j]*s[i].getRoomie()[j])-0.5)*/;
             }
             error[i]=error[i]/5;
         }
@@ -27,12 +27,13 @@ public class Error {
         return (c12 + c23 + c31)/3;
     }
 
-    public static double assigned (Student[][] assigned) {
+    public static double assigned (Assigned assigned) {
+        Student[][] assignedList = assigned.getAssignedList();
         double assignedError = .0;
-        for (int i = 0; i < assigned.length; i++) {
-            assignedError += room(assigned[i][0], assigned[i][1], assigned[i][2]);
+        for (int i = 0; i < assignedList.length; i++) {
+            assignedError += room(assignedList[i][0], assignedList[i][1], assignedList[i][2]);
         }
-        return assignedError/assigned.length;
+        return assignedError/assignedList.length;
     }
 
     public static double sigmoid(double d) {
