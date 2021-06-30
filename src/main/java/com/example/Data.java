@@ -36,7 +36,7 @@ public class Data {
     
     private void importFile(String filePath) throws IOException {
         // System.out.print("password: ");
-        workbook = (XSSFWorkbook) WorkbookFactory.create(new File(filePath), /*sc.next()*/"2022", true);
+        workbook = (XSSFWorkbook) WorkbookFactory.create(new File(filePath), sc.next(), true);
         sheet = workbook.getSheetAt(0);
     }
     

@@ -33,7 +33,7 @@ public class Assign { // TODO - 학년별 assign 방법 고려하기
         return assigned;
     }
 
-    public static Assigned firstAssign(Data data) { // TODO - 재현이가 짠 assign 메서드 옮기기
+    public static Assigned firstAssign(Data data) {
         Student[] list = data.getList();
         int roomNum = list.length/3;
         Student[][] assigned = new Student[roomNum][3];
