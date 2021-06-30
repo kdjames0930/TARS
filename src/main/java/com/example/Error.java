@@ -1,5 +1,7 @@
 package com.example;
 
+import java.lang.Math;
+
 public class Error {
 
     public static double couple (Student s1, Student s2) {
@@ -11,7 +13,7 @@ public class Error {
         }
         for(int i=0;i<2;i++) {
             for (int j=0;j<5;j++) {
-                error[i]+=a[j]*s[i].getRoomie()[j];
+                error[i]+=sigmoid(a[j]*s[i].getRoomie()[j]);
             }
             error[i]=error[i]/5;
         }
@@ -31,5 +33,9 @@ public class Error {
             assignedError += room(assigned[i][0], assigned[i][1], assigned[i][2]);
         }
         return assignedError/assigned.length;
+    }
+
+    public static double sigmoid(double d) {
+        return 1.0/(1+Math.exp(-d));
     }
 }

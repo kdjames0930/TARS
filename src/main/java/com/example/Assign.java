@@ -4,12 +4,12 @@ package com.example;
  * SimulatedAnnealing
  */
 public class Assign { // TODO - 학년별 assign 방법 고려하기
-    public static void firstGradeAssign(Data data) {
+    public static void freshmanAssign(Data data) {
         firstAssign(data);
         simulatedAnnealing();
     }
 
-    public static void secondGradeAssign(Data data) {
+    public static void commonAssign(Data data) {
         firstAssign(data);
         simulatedAnnealing();
         considerBlack();

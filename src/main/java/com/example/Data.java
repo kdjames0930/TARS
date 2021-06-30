@@ -45,7 +45,7 @@ public class Data {
     
     private void importFile(String filePath) throws IOException {
         System.out.print("password: ");
-        workbook = (XSSFWorkbook) WorkbookFactory.create(new File(filePath), sc.next(), true);
+        workbook = (XSSFWorkbook) WorkbookFactory.create(new File(filePath), /*sc.next()*/"2022", true);
         sheet = workbook.getSheetAt(0);
     }
     
@@ -78,9 +78,9 @@ public class Data {
         }
     }
 
-    public Student[][] assign(){ // TODO - Assign 클래스로 옮기기
-        double limit2=0.9;
-        double limit3=0.9;
+    public Student[][] assign(){ // TODO - Assign 클래스로 옮기기, 출력문 지우기
+        double limit2=0.6;
+        double limit3=0.6;
 
         QuickSort.desSort(list);
 
