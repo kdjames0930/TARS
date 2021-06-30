@@ -112,7 +112,7 @@ public class Assign { // TODO - 학년별 assign 방법 고려하기
         int n = assigned.getList().length;
         int idx1, idx2;
         int x1, y1, x2, y2;
-        for (int i = 400; i > 0; i--) {
+        for (int i = 500; i > 0; i--) {
             for (int j = 0; j < n*n; j++) {
                 idx1 = (int)(Math.random()*n);
                 idx2 = (int)(Math.random()*n);
@@ -121,11 +121,12 @@ public class Assign { // TODO - 학년별 assign 방법 고려하기
                     y1 = idx1%3;
                     x2 = idx2/3;
                     y2 = idx2%3;
-                    assigned = maybe_swap(assigned, x1, y1, x2, y2, i/100.0);
+                    assigned = maybe_swap(assigned, x1, y1, x2, y2, i/5000.0);
                 }
             }
-            if(i%20==0) System.out.println(assigned.getError());
+            // if(i%2==0) System.out.println(i+"step => error: "+ assigned.getError());
         }
+        // System.out.println(assigned.getError());
     }
     public static void considerBlack(Assigned assigned) {
         // TODO - 블랙 리스트를 고려한 방배정 => 양한얼
@@ -140,7 +141,7 @@ public class Assign { // TODO - 학년별 assign 방법 고려하기
         assigned.swap(x1, y1, x2, y2);
         score_swapped = assigned.getError();
         dif = score_swapped - score_now;
-        if (Math.random() < Math.exp( dif / T ) || dif < 0)
+        if (Math.random() < Math.exp( - dif / T ) || dif < 0)
             return assigned;
         else{
             assigned.swap(x1, y1, x2, y2);

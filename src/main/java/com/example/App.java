@@ -4,10 +4,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         String filePath = "C:/src/demo/src/resources/data.xlsx";
         Data data = new Data(filePath);
-        Assigned assigned = Assign.firstAssign(data);
-        System.out.println(assigned);
+        Assigned assigned = Assign.freshmanAssign(data);
         System.out.println("전체 에러: "+assigned.getError());
-        errorTest(assigned);
+        // Assigned assigned = Assign.firstAssign(data);
+        // System.out.println(assigned);
+        // System.out.println("전체 에러: "+assigned.getError());
+        // errorTest(assigned);
         // Assign.simulatedAnnealing(assigned);
         // System.out.println(assigned);
         // System.out.println("전체 에러: "+assigned.getError());
