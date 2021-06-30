@@ -5,13 +5,13 @@ public class Error {
     public static double couple (Student s1, Student s2) {
         Student[] s = new Student[]{s1, s2};
         int [] a = new int[5];
-        int [] error = new int[2];
+        double [] error = new double[2];
         for(int i=0;i<5;i++) {
             if(s1.getSelf()[i]!=s2.getSelf()[i]) a[i]=1;
         }
         for(int i=0;i<2;i++) {
             for (int j=0;j<5;j++) {
-                error[i]+=a[i]*s[i].getRoomie()[j];
+                error[i]+=a[j]*s[i].getRoomie()[j];
             }
             error[i]=error[i]/5;
         }

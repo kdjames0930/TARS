@@ -78,9 +78,9 @@ public class Data {
         }
     }
 
-    public Student[][] assign(){ //방에 학생들을 배정
-        double limit2=1.2;
-        double limit3=1.4;
+    public Student[][] assign(){ // TODO - Assign 클래스로 옮기기
+        double limit2=0.9;
+        double limit3=0.9;
 
         QuickSort.desSort(list);
 
@@ -97,11 +97,17 @@ public class Data {
                 if(pcount[j]!=3){
                     if(pcount[j]==1){
                         errors[j]=Error.couple(list[room[j][0]], list[i]);
-                        if(errors[j]/2<besterror) bestroom=j;
+                        if(errors[j]<besterror) {
+                            bestroom=j;
+                            besterror = errors[j];
+                        }
                     }
                     if(pcount[j]==2){
                         errors[j]=Error.room(list[room[j][0]], list[room[j][1]], list[i]);
-                        if(errors[j]/3<besterror) bestroom=j;
+                        if(errors[j]<besterror) {
+                            bestroom=j;
+                            besterror = errors[j];
+                        }
                     }
                 }
             }
@@ -123,6 +129,7 @@ public class Data {
                 pcount[roomcount+1]=1;
                 roomcount++;
             }
+            System.out.println(besterror);
         }
         Student[][] room2=new Student[30][3];
         for(int i=0; i<30; i++){
@@ -148,7 +155,7 @@ public class Data {
         Student student;
         for (int i = 0; i < list.length; i++) {
             student = list[i];
-            string += student+"\n";
+            string += i+". "+student+"\n";
         }
         return string;
     }

@@ -7,6 +7,7 @@ public class Student {
 	private int[] q;
     private int [] self;
     private int [] roomie;
+    private int[] black;
     private double strictness;
 
     public Student() { // 3의 배수 맞추기 위한 투명 학생(공석)
@@ -28,6 +29,31 @@ public class Student {
         setSelf(q);
         setRoomie(q);
         setStrictness();
+    }
+
+    private String[] refineCellArr(String[] cellArr) { // cellArr의 String을 int로 바꿈
+        cellArr[3] = cellArr[3].equals("조용한 분위기")?"0":"1";
+        cellArr[4] = cellArr[4].equals("2자 중")?"0":cellArr[4].equals("12시 이후 1시 전")?"1"
+        :cellArr[4].equals("1시 이후 2시 이전")?"2"
+        :"3";
+        cellArr[5] = cellArr[5].equals("모든 노래 및 게임소리는 이어폰을 사용함. 생활 소음 뿐임.")?"0":"1";
+        cellArr[6] = cellArr[6].equals("3명 중 한 명이라도 잔다면 소등을 해야함")?"0"
+        :cellArr[6].equals("3명 중 두 명이 잔다면 소등을 해야함")?"1"
+        :cellArr[6].equals("한 명이라도 자지 않으면 불을 끄지 말아야함.")?"2"
+        :"3";
+        cellArr[7] = cellArr[7].equals("꽤 하는 편")?"0":cellArr[7].equals("평균")?"1":"2";
+
+        return cellArr;
+    }
+
+    @Override
+    public String toString() { // student의 정보를 (학생 이름): (데이터) 형식의 string으로 반환
+        String qString = new String("");
+        for (int i = 0; i < this.q.length-1; i++) {
+            qString += this.q[i]+", ";
+        }
+        qString += this.q[this.q.length-1];
+        return name+" => "+grade+"학년, "+sex+", "+"q: "+qString;
     }
 
     public String getSex() {
@@ -52,6 +78,10 @@ public class Student {
 
     public int[] getSelf() {
         return self;
+    }
+
+    public int[] getBlack() {
+        return black;
     }
 
     public double getStrictness() {
@@ -94,36 +124,15 @@ public class Student {
         this.roomie = roomie;
     }
 
+    public void setBlack(int[] black) {
+        this.black = black;
+    }
+
     private void setStrictness() {
         double strictness = .0;
         for (int i = 0; i < roomie.length; i++) {
             strictness += roomie[i];
         }
         this.strictness = strictness/5;
-    }
-
-    private String[] refineCellArr(String[] cellArr) { // cellArr의 String을 int로 바꿈
-        cellArr[3] = cellArr[3].equals("조용한 분위기")?"0":"1";
-        cellArr[4] = cellArr[4].equals("2자 중")?"0":cellArr[4].equals("12시 이후 1시 전")?"1"
-        :cellArr[4].equals("1시 이후 2시 이전")?"2"
-        :"3";
-        cellArr[5] = cellArr[5].equals("모든 노래 및 게임소리는 이어폰을 사용함. 생활 소음 뿐임.")?"0":"1";
-        cellArr[6] = cellArr[6].equals("3명 중 한 명이라도 잔다면 소등을 해야함")?"0"
-        :cellArr[6].equals("3명 중 두 명이 잔다면 소등을 해야함")?"1"
-        :cellArr[6].equals("한 명이라도 자지 않으면 불을 끄지 말아야함.")?"2"
-        :"3";
-        cellArr[7] = cellArr[7].equals("꽤 하는 편")?"0":cellArr[7].equals("평균")?"1":"2";
-
-        return cellArr;
-    }
-
-    @Override
-    public String toString() { // student의 정보를 (학생 이름): (데이터) 형식의 string으로 반환
-        String qString = new String("");
-        for (int i = 0; i < this.q.length-1; i++) {
-            qString += this.q[i]+", ";
-        }
-        qString += this.q[this.q.length-1];
-        return name+" => "+grade+"학년, "+sex+", "+"q: "+qString;
     }
 }
