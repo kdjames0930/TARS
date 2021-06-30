@@ -5,6 +5,7 @@ public class App {
         String filePath = "C:/src/demo/src/resources/data.xlsx";
         Data data = new Data(filePath);
         Assigned assigned = Assign.freshmanAssign(data);
+        System.out.println(assigned);
         System.out.println("전체 에러: "+assigned.getError());
         // Assigned assigned = Assign.firstAssign(data);
         // System.out.println(assigned);
